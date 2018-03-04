@@ -1,0 +1,6 @@
+Man skriver in ett ord som man vill ska vara det rätta ordet
+consolen skriver ut lika många "_" som det är bokstäver i ordet
+Man gissar på en bokstav eller på hela ordet och om det är fel kommer en del av gubben att byggas på men om det är rätt kommer den att skriva bokstaven över understräcket. Går nu om tills man vinner om inte ordet man gissade på är rätt.
+
+En klass som startar programet och instansierar hangman klassen.
+En klass som utför alla beräkningar och tar in input samt skriver ut till konsolen. Allting kan vara private men själva instansieringsobjektet måste vara public för att kunna nås från den andra klassen.
