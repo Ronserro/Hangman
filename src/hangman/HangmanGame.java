@@ -34,7 +34,9 @@ public class HangmanGame {
 	public static void start() throws FileNotFoundException {
 		lives = 11;
 		guessedletters = "";
-		getPlayerCount();
+		if (player == 0) {
+			getPlayerCount();
+		}
 		getWord();
 		guess();
 	}
@@ -52,7 +54,7 @@ public class HangmanGame {
 		if (player == 1) {
 			File file = new File("words");
 			Scanner filereader = new Scanner(file);
-			randomword = (int) (Math.random() * 71);
+			randomword = (int) (Math.random() * 70);
 			for (int i = 0; i < answerstreck.length; i++) {
 				if (randomword == answerstreck[i]) {
 					getWord();
@@ -134,12 +136,14 @@ public class HangmanGame {
 					break;
 				}
 				if (i == guessword.length-1) {
+					answersrow++;
 					win();
 				}
 			}
 		}
 		if (guess.length() == answer.length()) {
 			if (guess.equals(answer)) {
+				answersrow++;
 				win();
 			} else {
 				loseLife();
@@ -230,28 +234,32 @@ public class HangmanGame {
 	}
 
 	private void gameOver() throws FileNotFoundException {
+		answerstreckplace++;
 		answersrow = 0;
 		console.println("Det rätta ordet var " + answer);
 		console.println("Du förlorade! Nytt spel y/n");
 		guess = console.nextString();
 		if (guess.equals("y")) {
 			start();
-		} else {
+		} else if(guess.equals("n")) {
 			System.exit(0);
+		} else {
+			gameOver();
 		}
 	}
 
 	private static void win() throws FileNotFoundException {
-		clear();
 		answerstreckplace++;
-		answersrow++;
+		clear();
 		console.println("Du har " + answersrow + " rätt i rad");
 		console.println("Du vann! Nytt spel y/n");
 		guess = console.nextString();
 		if (guess.equals("y")) {
 			start();
-		} else {
+		} else if(guess.equals("n")) {
 			System.exit(0);
+		} else {
+			win();
 		}
 	}
 
